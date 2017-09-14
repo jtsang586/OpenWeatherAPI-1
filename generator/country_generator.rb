@@ -17,14 +17,14 @@ module Generator
         def generate_country
             random_number = rand(249)
 
-            p @capital_name = @countries_all[random_number]['capital'].delete(' ')
+            @capital_name = @countries_all[random_number]['capital'].delete(' ')
 
-                if @capital_name == ''
-                    generate_country
-                end
+            if @capital_name == ''
+                generate_country
+            end
 
-            p @country_name = @countries_all[random_number]['name']['common']
-            p @country_code = @countries_all[random_number]['cca2']
+            @country_name = @countries_all[random_number]['name']['common']
+            @country_code = @countries_all[random_number]['cca2']
         end
     end
 
