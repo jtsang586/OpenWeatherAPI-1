@@ -11,7 +11,7 @@ describe CurrentWeather do
 	end
 
 	it 'should return matching country code and city name' do
-		expect(@current_weather.get_single_body['name']).to eq @generator.capital_name
+		expect(@current_weather.get_single_body['name'].gsub!(/[^0-9A-Za-z]/, '')).to eq @generator.capital_name.gsub!(/[^0-9A-Za-z]/, '')
 		expect(@current_weather.get_single_body['sys']['country']).to eq @generator.country_code
 	end
 
