@@ -61,8 +61,10 @@ describe CurrentWeather do
 	end
 
 	it "Wind should be a hash filled with numeric keys" do
-		expect(@current_weather.get_single_body['wind']['speed']).to be_kind_of(Numeric)
-		expect(@current_weather.get_single_body['wind']['deg']).to be_kind_of(Numeric)
+		if @current_weather.get_single_body.keys.include? 'wind'
+			expect(@current_weather.get_single_body['wind']['speed']).to be_kind_of(Numeric)
+			expect(@current_weather.get_single_body['wind']['deg']).to be_kind_of(Numeric)
+		end
 	end
 
 	it "Should get rain hash if exist" do
