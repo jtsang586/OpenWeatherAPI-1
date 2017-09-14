@@ -48,9 +48,16 @@ describe CurrentWeather do
 		expect(@current_weather.get_single_response_code).to equal(200)
 	end
 
-
 	it "Base should be a string" do
 		expect(@current_weather.get_single_body['base']).to be_a(String)
+	end
+
+	it "Main should be a hash filled with numeric keys" do
+		expect(@current_weather.get_single_body['main']['temp']).to be_kind_of(Numeric)
+		expect(@current_weather.get_single_body['main']['pressure']).to be_kind_of(Numeric)
+		expect(@current_weather.get_single_body['main']['humidity']).to be_kind_of(Numeric)
+		expect(@current_weather.get_single_body['main']['temp_min']).to be_kind_of(Numeric)
+		expect(@current_weather.get_single_body['main']['temp_max']).to be_kind_of(Numeric)
 	end
 
 end
