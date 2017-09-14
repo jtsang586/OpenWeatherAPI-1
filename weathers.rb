@@ -1,5 +1,8 @@
 require 'json'
 require 'httparty'
+require 'envyable'
+Envyable.load('./config/env.yml', 'development')
+
 
 # Module weathers to contain weather stuff
 module Weathers
@@ -11,7 +14,7 @@ module Weathers
 		base_uri 'http://api.openweathermap.org/data/2.5'
 		# Takes in capital name and country code at the start to find current weather
 		def initialize(city_name, country_code)
-			@current_weather = self.class.get("/weather?q=#{city_name},#{country_code}&appid=b1d2a3a87decdd84518e3bdddbd5de57")
+			@current_weather = self.class.get("/weather?q=#{city_name},#{country_code}&appid=#{ENV['OPEN_WEATHER_API_TOKEN']}")
 		end
 
 		def get_single_headers
