@@ -23,6 +23,7 @@ describe CurrentWeather do
 		expect(@current_weather.get_single_body['coord']).to be_a(Hash)
 		expect(@current_weather.get_single_body['coord']['lon']).to be_kind_of(Numeric)
 		expect(@current_weather.get_single_body['coord']['lat']).to be_kind_of(Numeric)
+
 	end
 
 	it 'should return a weather array' do
