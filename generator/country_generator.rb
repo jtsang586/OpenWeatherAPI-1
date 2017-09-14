@@ -2,7 +2,7 @@ require 'yaml'
 
 module Generator
 
-    class Random_country_generator
+    class RandomCountryGenerator
 
         attr_accessor :countries_all, :country_name, :capital_name, :country_code
 
@@ -32,4 +32,4 @@ end
 
 # generator = Generator::Random_country_generator.new
 
-# generator.generate_country
+# puts generator.generate_country
