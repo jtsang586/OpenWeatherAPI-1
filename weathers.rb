@@ -36,9 +36,3 @@ module Weathers
 	end
 
 end
-
-include Weathers
-
-cw = Weathers::CurrentWeather.new('London', 'uk')
-
-cw
