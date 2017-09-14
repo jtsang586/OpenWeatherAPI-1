@@ -32,7 +32,6 @@ describe CurrentWeather do
 	it 'should return first hash inside the weather array that has description that matches to their id number' do
 		id = @current_weather.get_single_body['weather'][0]['id'].to_s
 		condition = WeatherConditions::ConditionsCode.new(id)
-		puts id
 		expect(@current_weather.get_single_body['weather'][0]['description']).to eq condition.meaning
 	end
 
@@ -59,5 +58,26 @@ describe CurrentWeather do
 		expect(@current_weather.get_single_body['main']['temp_min']).to be_kind_of(Numeric)
 		expect(@current_weather.get_single_body['main']['temp_max']).to be_kind_of(Numeric)
 	end
+
+	it "Wind should be a hash filled with numeric keys" do
+		expect(@current_weather.get_single_body['wind']['speed']).to be_kind_of(Numeric)
+		expect(@current_weather.get_single_body['wind']['deg']).to be_kind_of(Numeric)
+	end
+
+	it "Should get rain hash if exist" do
+		if @current_weather.get_single_body.keys.include? 'rain'
+			expect(@current_weather.get_single_body['rain']).to be_a(Hash)
+		end
+	end
+
+	it "Cloud should be hash with all which is an integer" do
+		expect(@current_weather.get_single_body['clouds']['all']).to be_a(Integer)
+	end	
+
+	it "dt should be 10 digits long" do
+		expect(@current_weather.get_single_body['dt'].digits.count).to eq 10
+	end	
+
+
 
 end
