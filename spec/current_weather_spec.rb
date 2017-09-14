@@ -63,7 +63,7 @@ describe CurrentWeather do
 	it "Wind should be a hash filled with numeric keys" do
 		if @current_weather.get_single_body.keys.include? 'wind'
 			expect(@current_weather.get_single_body['wind']['speed']).to be_kind_of(Numeric)
-			expect(@current_weather.get_single_body['wind']['deg']).to be_kind_of(Numeric)
+			expect(@current_weather.get_single_body['wind']['deg']).to be_kind_of(Numeric).or match(nil)
 		end
 	end
 
