@@ -29,9 +29,3 @@ module Generator
     end
 
 end
-
-# generator = Generator::RandomCountryGenerator.new
-
-# generator.generate_country
-
-# generator.country_name
