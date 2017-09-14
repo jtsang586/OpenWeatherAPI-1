@@ -78,6 +78,21 @@ describe CurrentWeather do
 		expect(@current_weather.get_single_body['dt'].digits.count).to eq 10
 	end	
 
+	it 'should return a hash for sys' do
+		expect(@current_weather.get_single_body['sys']).to be_a(Hash)
+	end
 
+	it 'should return a float message inside sys' do
+		expect(@current_weather.get_single_body['sys']['message']).to be_a(Float)
+	end
+
+	it 'should return a string country inside sys' do
+		expect(@current_weather.get_single_body['sys']['country']).to be_a(String)
+	end
+
+	it 'should return a 10 digit sunrise and sunset integer inside sys' do
+		expect(@current_weather.get_single_body['sys']['sunrise'].digits.count).to eq(10)
+		expect(@current_weather.get_single_body['sys']['sunset'].digits.count).to eq(10)
+	end
 
 end
