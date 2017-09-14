@@ -1,4 +1,4 @@
-weather_condition_codes = {
+{
 	"200" : {
 		"meaning" : "thunderstorm with light rain",
 		"icon" : ["11d"] 
