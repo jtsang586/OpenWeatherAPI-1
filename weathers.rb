@@ -1,5 +1,6 @@
 require 'json'
 require 'httparty'
+
 # Module weathers to contain weather stuff
 module Weathers
 	# Class to return the current weather a capital city

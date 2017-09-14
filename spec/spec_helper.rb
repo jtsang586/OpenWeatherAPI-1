@@ -1,6 +1,6 @@
 require 'httparty'
-require_relative '../weathers.rb'
-require_relative '../generator/country_generator.rb'
+require_relative '../weathers'
+require_relative '../generator/country_generator'
 
 RSpec.configure do |config|
   config.color = true
