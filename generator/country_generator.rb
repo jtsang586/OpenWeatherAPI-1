@@ -17,7 +17,7 @@ module Generator
         def generate_country
             random_number = rand(249)
 
-            @capital_name = @countries_all[random_number]['capital'].delete(' ')
+            @capital_name = @countries_all[random_number]['capital']
 
             if @capital_name == ''
                 generate_country

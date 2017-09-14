@@ -11,26 +11,29 @@ describe CurrentWeather do
 	end
 
 	it 'should return matching country code and city name' do
-		expect(@current_weather.get_single_body['name'].delete(' ')).to eq @generator.capital_name
+		expect(@current_weather.get_single_body['name']).to eq @generator.capital_name
 		expect(@current_weather.get_single_body['sys']['country']).to eq @generator.country_code
 	end
 
-	it 'should return a current weather JSON object with at most 12 main keys' do
-		expect(@current_weather.get_single_body.keys.length).to be_between(11,12)
+	it 'should return a current weather JSON object with at most 13 main keys' do
+		expect(@current_weather.get_single_body.keys.length).to be_between(11,13)
 	end
 
-	it 'should return coordinates that are a Hash, with longitude an latitude floats' do
+	it 'should return coordinates that are a Hash, with longitude an latitude numbers' do
 		expect(@current_weather.get_single_body['coord']).to be_a(Hash)
-		expect(@current_weather.get_single_body['coord']['lon']).to be_a(Float)
-		expect(@current_weather.get_single_body['coord']['lat']).to be_a(Float)
+		expect(@current_weather.get_single_body['coord']['lon']).to be_kind_of(Numeric)
+		expect(@current_weather.get_single_body['coord']['lat']).to be_kind_of(Numeric)
 	end
 
 	it 'should return a weather array' do
 		expect(@current_weather.get_single_body['weather']).to be_a(Array)
 	end
 
-	it 'should return Hashes inside the weather array that has description that matches to their id number' do
-
+	it 'should return first hash inside the weather array that has description that matches to their id number' do
+		id = @current_weather.get_single_body['weather'][0]['id'].to_s
+		condition = WeatherConditions::ConditionsCode.new(id)
+		puts id
+		expect(@current_weather.get_single_body['weather'][0]['description']).to eq condition.meaning
 	end
 
 	it "should be an integer for id" do 
@@ -41,12 +44,13 @@ describe CurrentWeather do
 		expect(@current_weather.get_single_body['id'].size).to equal(8)
 	end
 
-	it "should have matching capital city name to returned JSON file" do 
-		expect(@current_weather.get_single_body['name']).to eql(@generator.capital_name)
-	end
-
 	it "should have response code of 200" do 
 		expect(@current_weather.get_single_response_code).to equal(200)
+	end
+
+
+	it "Base should be a string" do
+		expect(@current_weather.get_single_body['base']).to be_a(String)
 	end
 
 end
