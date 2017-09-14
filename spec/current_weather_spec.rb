@@ -32,11 +32,11 @@ describe CurrentWeather do
 		expect(@current_weather.get_single_body['id']).to be_kind_of(Integer)
 	end
 
-	it "should have 7 digits in id" do 
+	it "should have 8 digits in id" do 
 		expect(@current_weather.get_single_body['id'].size).to equal(8)
 	end
 
-	it "should have matching capital city name to return JSON" do 
+	it "should have matching capital city name to returned JSON file" do 
 		expect(@current_weather.get_single_body['name']).to eql(@generator.capital_name)
 	end
 
