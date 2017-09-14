@@ -1,5 +1,4 @@
 require 'yaml'
-require 'i18n'
 
 module Generator
 
@@ -16,7 +15,7 @@ module Generator
 
 
         def generate_country
-            random_number = rand(249)
+            random_number = rand(248)
 
             @capital_name = @countries_all[random_number]['capital']
 
@@ -24,9 +23,7 @@ module Generator
                 generate_country
             end
 
-            # translate special characters and accent symbols to English alphabet
-            I18n.available_locales = [:en]
-            I18n.transliterate(@capital_name.delete(' '))
+            @capital_name.delete(' ')
             @country_name = @countries_all[random_number]['name']['common']
             @country_code = @countries_all[random_number]['cca2']
         end
