@@ -1,4 +1,5 @@
 require 'yaml'
+require 'i18n'
 
 module Generator
 
@@ -22,7 +23,10 @@ module Generator
             if @capital_name == ''
                 generate_country
             end
-            @capital_name.delete(' ')
+
+            # translate special characters and accent symbols to English alphabet
+            I18n.available_locales = [:en]
+            I18n.transliterate(@capital_name.delete(' '))
             @country_name = @countries_all[random_number]['name']['common']
             @country_code = @countries_all[random_number]['cca2']
         end
