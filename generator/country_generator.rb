@@ -15,13 +15,14 @@ module Generator
 
 
         def generate_country
-            random_number = rand(249)
+            random_number = rand(248)
 
             @capital_name = @countries_all[random_number]['capital']
 
             if @capital_name == ''
                 generate_country
             end
+
             @capital_name.delete(' ')
             @country_name = @countries_all[random_number]['name']['common']
             @country_code = @countries_all[random_number]['cca2']
